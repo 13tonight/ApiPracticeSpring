@@ -1,0 +1,18 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: ApiPracticeSpring
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:./apiDb
+    username: sunny
+    password:
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
