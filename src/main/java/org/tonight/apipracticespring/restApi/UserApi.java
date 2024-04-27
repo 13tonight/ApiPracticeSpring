@@ -3,6 +3,7 @@ package org.tonight.apipracticespring.restApi;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.tonight.apipracticespring.dto.UserDto;
 import org.tonight.apipracticespring.entity.UserProjects;
 import org.tonight.apipracticespring.entity.exampleUser;
 import org.tonight.apipracticespring.service.UserProjectService;
@@ -33,7 +34,7 @@ public class UserApi {
     }
 
     @GetMapping("/byId")
-    public Optional<exampleUser> getById(@RequestParam Integer id){
+    public UserDto getById(@RequestParam Integer id){
         return userService.getUserById(id);
     }
 

@@ -2,6 +2,7 @@ package org.tonight.apipracticespring.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.action.internal.OrphanRemovalAction;
 
 import java.time.Instant;
 import java.util.List;
@@ -23,7 +24,7 @@ public class exampleUser {
     @OneToOne
     private UserAccount account;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     private List<UserReview> reviews;
 
     @ManyToMany

@@ -3,6 +3,7 @@ package org.tonight.apipracticespring.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.tonight.apipracticespring.dto.UserDto;
 import org.tonight.apipracticespring.entity.UserAccount;
 import org.tonight.apipracticespring.entity.UserReview;
 import org.tonight.apipracticespring.entity.exampleUser;
@@ -46,12 +47,23 @@ public class UserService {
         return exampleUserRepo.findAll();
     }
 
-    public Optional<exampleUser> getUserById(Integer id) {
-        return exampleUserRepo.findById(id);
+//    public Optional<exampleUser> getUserById(Integer id) {
+//        return exampleUserRepo.findById(id);
+//    }
+    public UserDto getUserById(Integer id) {
+        UserDto userDto = UserDto.builder().build();
+        Optional<exampleUser> optionalExampleUser = exampleUserRepo.findById(id);
+        if(optionalExampleUser.isPresent()) {
+            userDto = getUserDetails(optionalExampleUser.get());
+            return userDto;
+        }
+        return userDto;
     }
+
+
     public Optional<exampleUser> updateUser(exampleUser user){
         Optional<exampleUser> updatedUser = Optional.empty();
-        Optional<exampleUser> optionalUpdateUser = getUserById(user.getUserId());
+        Optional<exampleUser> optionalUpdateUser = exampleUserRepo.findById(user.getUserId());
         if(optionalUpdateUser.isPresent()){
             updatedUser = Optional.of(exampleUserRepo.save(user));
             return updatedUser;
@@ -60,7 +72,7 @@ public class UserService {
     }
     public void deleteById(Integer id) {
         userAccountService.deleteUserAccounts(id);
-        userReviewService.deleteById(id);
+//        userReviewService.deleteById(id);
         exampleUserRepo.deleteById(id);
 
     }
@@ -87,6 +99,23 @@ public class UserService {
     public List<String> limitedUserDetails(Integer userId){
 
         return exampleUserRepo.limitedUserDetails(userId);
+    }
+
+    /* DTO example */
+
+    private UserDto getUserDetails(exampleUser user){
+        UserDto userDto = UserDto.builder().id(user
+                        .getUserId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .designation(user.getDesignation())
+                .company(user.getCompany())
+                .projects(user.getProjects())
+                .account(user.getAccount())
+                .reviews(user.getReviews())
+                .build();
+        return userDto;
     }
 
 }
