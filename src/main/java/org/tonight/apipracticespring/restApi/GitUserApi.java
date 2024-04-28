@@ -17,6 +17,6 @@ public class GitUserApi {
 
     @GetMapping("/user")
     public GitUserDto gitUserName(@RequestParam String userName){
-        return gitUserService.getGitUserInfo(userName);
+        return gitUserService.getGitUserwithFeign(userName);
     }
 }
