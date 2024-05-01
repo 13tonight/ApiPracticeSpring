@@ -3,6 +3,7 @@ package org.tonight.apipracticespring.restApi;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.tonight.apipracticespring.dto.LimitedUserDetailsDto;
 import org.tonight.apipracticespring.dto.UserDto;
 import org.tonight.apipracticespring.entity.UserProjects;
 import org.tonight.apipracticespring.entity.exampleUser;
@@ -20,6 +21,8 @@ public class UserApi {
     @Autowired
     UserService userService;
     @Autowired
+
+
     UserProjectService userProjectService;
 
     @PostMapping("/addUser")

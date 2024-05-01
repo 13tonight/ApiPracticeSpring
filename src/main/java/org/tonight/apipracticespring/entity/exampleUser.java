@@ -37,5 +37,4 @@ public class exampleUser {
     @Builder.Default
     private Instant timeNow = Instant.now();
 
-
 }

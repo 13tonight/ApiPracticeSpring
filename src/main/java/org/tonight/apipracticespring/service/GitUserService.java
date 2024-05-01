@@ -23,9 +23,6 @@ public class GitUserService {
     @Autowired
     GitUserFeignClient gitUserFeignClient;
 
-
-
-
 //    public GitUserDto getGitUserInfo(String username) {
 //       return restTemplate.getForObject("https://api.github.com/users/" + username, GitUserDto.class);
 //    }

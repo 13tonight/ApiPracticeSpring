@@ -3,6 +3,7 @@ package org.tonight.apipracticespring.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.tonight.apipracticespring.dto.LimitedUserDetailsDto;
 import org.tonight.apipracticespring.dto.UserDto;
 import org.tonight.apipracticespring.entity.UserAccount;
 import org.tonight.apipracticespring.entity.UserReview;
@@ -32,6 +33,7 @@ public class UserService {
     final UserProjectRepo userProjectRepo;
     final UserProjectService userProjectService;
     final CompanyDetailsService companyDetailsService;
+    final LimitedUserService limitedUserService;
 
     public void addUser(exampleUser user) {
 
@@ -104,7 +106,7 @@ public class UserService {
     /* DTO example */
 
     private UserDto getUserDetails(exampleUser user){
-        UserDto userDto = UserDto.builder().id(user
+        UserDto userDto = UserDto.builder().userId(user
                         .getUserId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
