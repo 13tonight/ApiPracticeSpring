@@ -24,13 +24,5 @@ public class ApplicationConfig {
     public Feign.Builder getFeignBuilder(){
         return Feign.builder();
     }
-    @Bean
-    public GitUserFeignClient gitUserFeignClient() {
-        return new GitUserFeignClient() {
-            @Override
-            public GitUserDto getGitHubUserwithFeignClient(String username) {
-                return null;
-            }
-        };
-    }
+
 }

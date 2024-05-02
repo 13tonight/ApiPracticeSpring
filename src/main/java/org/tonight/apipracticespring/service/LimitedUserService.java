@@ -16,18 +16,18 @@ public class LimitedUserService {
 
     public LimitedUserDetailsDto limitedUserDetails(Integer id) {
         return webClient.get().uri("http://localhost:8090/user/byId?id=" + id)
-                .retrieve().bodyToMono(exampleUser.class)
-                .flatMap(this::getLimitedUserDetails).block();
+                .retrieve().bodyToMono(exampleUser.class).map(this::getLimitedUserDetails).block();
+
+
     }
 
-    public Mono<LimitedUserDetailsDto> getLimitedUserDetails(exampleUser user) {
-        LimitedUserDetailsDto limitedDto = LimitedUserDetailsDto.builder()
+    public LimitedUserDetailsDto getLimitedUserDetails(exampleUser user) {
+        return LimitedUserDetailsDto.builder()
                 .userId(user.getUserId())
                 .firstName(user.getFirstName())
                 .companyName(user.getCompany().getCompanyName())
                 .designation(user.getDesignation())
                 .membership(user.getAccount().getMembershipType())
                 .build();
-        return Mono.just(limitedDto);
     }
 }
